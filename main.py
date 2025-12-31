@@ -90,13 +90,13 @@ def main():
                                 response = get_issa_rest_api_response(request)
                                 symbol_price = response['LastRate'] / 100  # ILA -> ILS
                                 symbol_price_date = response['TradeDate']
-                                symbol_price_date = datetime.datetime.strptime(symbol_price_date, "%d/%m/%Y").strftime('%Y-%m-%d')
+                                symbol_price_date = datetime.datetime.strptime(symbol_price_date, "%d/%m/%Y").strftime('%Y/%m/%d')
 
                             if request.url.startswith('https://maya.tase.co.il/api/v1/funds/mutual'):
                                 response = get_issa_rest_api_response(request)
                                 symbol_price = response['purchasePrice'] / 100  # ILA -> ILS
                                 symbol_price_date = response['ratesAsOf']
-                                symbol_price_date = datetime.datetime.strptime(symbol_price_date, "%Y-%m-%d").strftime('%Y-%m-%d')
+                                symbol_price_date = datetime.datetime.strptime(symbol_price_date, "%Y-%m-%d").strftime('%Y/%m/%d')
 
             if not symbol_price:
                 raise Exception(f'Failed to get price for {symbol}')
